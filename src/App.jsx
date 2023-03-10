@@ -1,25 +1,32 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 function App() {
+  const [btn1,setBtn1] =useState(true);
+  const [btn2,setBtn2] = useState(true);
   return (
     <Wrap>
       <h1>Select</h1>
       <WrapBtn>
         <BtnGroup_1>
-          <Btn>
+          <Btn onClick={() => {
+            setBtn1((prev)=>!prev);
+          }}>
             <div>자바</div>
             <div>▼</div>
           </Btn>
-          <List>
+          <List dp={btn1}>
             클릭하며 나옴
           </List>
         </BtnGroup_1>
         <BtnGroup_2>
-          <Btn>
+          <Btn onClick={() => {
+            setBtn2((prev)=>!prev);
+          }}>
             <div>자바</div>
             <div>▼</div>
           </Btn>
-          <List>
+          <List dp ={btn2}>
             클릭하며 나옴
           </List>
         </BtnGroup_2>
@@ -35,7 +42,6 @@ const Wrap = styled.div`
   height: 150px;
   border : 2px solid gray;
   margin : 20px;
-  background-color: red;
   overflow: visible;
 `
 const Btn = styled.button`
@@ -50,17 +56,14 @@ const WrapBtn = styled.div`
   gap: 10px;
   height: 62px;
   overflow: visible;
-  background-color: green;
 `
 const BtnGroup_1 = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: pink;
   overflow: visible;
   height: fit-content;
 `
 const BtnGroup_2 = styled.div`
-  background-color: yellow;
   display: flex;
   flex-direction: column;
   /* height: fit-content; */
@@ -71,4 +74,5 @@ const List = styled.ul`
   height: 400px;
   border: 1px solid black;
   background-color: white;
+  display: ${(props)=>props.dp ? 'block' : 'none'};
 `
